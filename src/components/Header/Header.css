@@ -3,20 +3,20 @@
 }
 
 .header__logo {
-  top: 22px;
+  /* top: 22px;
   left: 843px;
   width: 235px;
-  height: 50px;
+  height: 50px; */
   opacity: 1;
   margin-top: 2vw;
   margin-right: 15vw;
 }
 
 .proLogo {
-  top: 20px;
+  /* top: 20px;
   left: 30px;
   width: 311px;
-  height: 50px;
+  height: 50px; */
   opacity: 1;
   float: left;
   margin-top: 2vw;

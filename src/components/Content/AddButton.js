@@ -11,17 +11,12 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
 
 const useStyles = makeStyles({
   add: {
-    // top: "20px",
-    // left: "250px",
-    // width: "99px",
-    // height: "30px",
     border: "1px solid #14AFF1",
     borderRadius: "10px",
-    //font: "normal normal normal 20px/24px Ubuntu",
-    //letterSpacing: "0px",
     color: "#FFFFFF",
     opacity: "1",
   },
@@ -31,6 +26,9 @@ const useStyles = makeStyles({
   //     borderRadius: "6",
   //     opacity: "1",
   //   },
+  modalBackground: {
+    backgroundColor: "#2A3E4C",
+  },
   saveButton: {
     background: "#14AFF1 0% 0% no-repeat padding-box",
   },
@@ -45,9 +43,59 @@ function AddButton() {
     setOpen(true);
   };
 
+  const addData = () => {
+    try {
+      const response = axios.post(
+        "http://localhost:8080/1806131/add/",
+        // {
+        // headers:{'Content-Type': 'application/json'},
+        /*params: */ {
+          nameCustomer: CustomerName,
+          custNumber: CustomerNo,
+          docId: InvNo,
+          totalOpenAmount: TotalAmount,
+          dueInDate: DueInDate,
+          notes: Notes,
+        }
+        // }
+      );
+
+      console.log("Returned data:", response);
+    } catch (e) {
+      console.log(`Axios request failed: ${e}`);
+    }
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [CustomerName, setCustomerName] = React.useState();
+  const [CustomerNo, setCustomerNo] = React.useState();
+  const [InvNo, setInvNo] = React.useState();
+  const [TotalAmount, setTotalAmount] = React.useState();
+  const [DueInDate, setDueInDate] = React.useState();
+  const [Notes, setNotes] = React.useState();
+
+  const CustName = (e) => {
+    setCustomerName(e.target.value);
+  };
+  const CustNo = (e) => {
+    setCustomerNo(e.target.value);
+  };
+  const InvoiceNo = (e) => {
+    setInvNo(e.target.value);
+  };
+  const Amount = (e) => {
+    setTotalAmount(e.target.value);
+  };
+  const DueDate = (e) => {
+    setDueInDate(e.target.value);
+  };
+  const Anote = (e) => {
+    setNotes(e.target.value);
+  };
+
   return (
     <div>
       <Button
@@ -67,26 +115,31 @@ function AddButton() {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">
+        <DialogTitle id="form-dialog-title" className={classes.modalBackground}>
           <Grid container xs={12}>
-            <Grid item xs={5}>
-              {"Edit Invoice"}
+            <Grid item xs={3}>
+              {"Add Invoice"}
             </Grid>
-            <Grid item xs={6}></Grid>
+            <Grid item xs={8}></Grid>
             <Grid item xs={1}>
               <IconButton edgeEnd="end" onClick={handleClose}>
-                <CloseIcon />{" "}
+                <CloseIcon />
               </IconButton>
             </Grid>
           </Grid>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent className={classes.modalBackground}>
           <Grid container spacing={1}>
             <Grid item xs={3}>
               Customer Name
             </Grid>
             <Grid item xs={3}>
-              <TextField id="name" type="text" variant="outlined" />
+              <TextField
+                id="nameCustomer"
+                type="text"
+                variant="outlined"
+                onChange={CustName}
+              />
             </Grid>
             <Grid item spacing={1}>
               {" "}
@@ -95,7 +148,12 @@ function AddButton() {
               Due Date
             </Grid>
             <Grid item xs={3}>
-              <TextField id="date" type="date" variant="outlined" />
+              <TextField
+                id="dueInDate"
+                type="date"
+                variant="outlined"
+                onChange={DueDate}
+              />
             </Grid>
 
             <Grid container spacing={2}>
@@ -104,9 +162,10 @@ function AddButton() {
               </Grid>
               <Grid item xs={3}>
                 <TextField
-                  id="Customer Number"
+                  id="custNumber"
                   type="text"
                   variant="outlined"
+                  onChange={CustNo}
                 />
               </Grid>
               <Grid item spacing={1}>
@@ -122,6 +181,7 @@ function AddButton() {
                   rows={4}
                   type="text"
                   variant="outlined"
+                  onChange={Anote}
                 />
               </Grid>
             </Grid>
@@ -135,9 +195,10 @@ function AddButton() {
               </Grid>
               <Grid item xs={3}>
                 <TextField
-                  id="name"
+                  id="docId"
                   placeholder="invoice No"
                   variant="outlined"
+                  onChange={InvoiceNo}
                 />
               </Grid>
             </Grid>
@@ -151,15 +212,16 @@ function AddButton() {
               </Grid>
               <Grid item xs={3}>
                 <TextField
-                  id=""
+                  id="totalOpenAmount"
                   placeholder="invoice Amount"
                   variant="outlined"
+                  onChange={Amount}
                 />
               </Grid>
             </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions>
+        <DialogActions className={classes.modalBackground}>
           <Grid container xs={12}>
             <Grid item xs={2}>
               <Button onClick={handleClose} color="primary">
@@ -175,7 +237,10 @@ function AddButton() {
 
             <Grid item xs={2}>
               <Button
-                onClick={handleClose}
+                onClick={() => {
+                  addData();
+                  handleClose();
+                }}
                 color="primary"
                 className={classes.saveButton}
               >

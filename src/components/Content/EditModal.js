@@ -26,6 +26,10 @@ const useStyles = makeStyles({
   saveButton: {
     background: "#14AFF1 0% 0% no-repeat padding-box",
   },
+  modalBackground: {
+    background: "#2A3E4C",
+    font: "ubuntu",
+  },
 });
 
 function EditButton() {
@@ -60,10 +64,10 @@ function EditButton() {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">
+        <DialogTitle id="form-dialog-title" className={classes.modalBackground}>
           <Grid container xs={12}>
             <Grid item xs={5}>
-              {"Add Invoice"}
+              {"Edit Invoice"}
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs={1}>
@@ -73,24 +77,18 @@ function EditButton() {
             </Grid>
           </Grid>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent className={classes.modalBackground}>
           <Grid container spacing={1}>
             <Grid item xs={6}>
               Invoice Amount
             </Grid>
 
             <Grid item xs={6}>
-              <TextField
-                id="name"
-                label="Invoice Amount"
-                type="number"
-                variant="outlined"
-                size="small"
-              />
+              <TextField id="name" variant="outlined" size="small" />
             </Grid>
           </Grid>
 
-          <Grid container spacing={1}>
+          <Grid container spacing={2}>
             <Grid item xs={6}>
               Notes
             </Grid>
@@ -98,15 +96,16 @@ function EditButton() {
             <Grid item xs={6}>
               <TextField
                 id="notes"
-                label="notes"
                 type="text"
                 variant="outlined"
                 size="small"
+                multiline
+                rows={5}
               />
             </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions>
+        <DialogActions className={classes.modalBackground}>
           <Grid container xs={12}>
             <Grid item xs={2}>
               <Button onClick={handleClose} color="primary">

@@ -22,6 +22,9 @@ const useStyles = makeStyles({
   del: {
     background: "#14AFF1 0% 0% no-repeat padding-box",
   },
+  modalBackground: {
+    backgroundColor: "#2A3E4C"
+  }
 });
 function DeleteButton() {
   const classes = useStyles();
@@ -53,8 +56,9 @@ function DeleteButton() {
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
+        
       >
-        <DialogTitle id="alert-dialog-slide-title">
+        <DialogTitle id="alert-dialog-slide-title" className={classes.modalBackground}>
           <Grid container xs={12}>
             <Grid item xs={5}>
               {"Delete Record(s)? "}
@@ -67,14 +71,14 @@ function DeleteButton() {
             </Grid>
           </Grid>
         </DialogTitle>
-        <DialogContent>
+        <DialogContent className={classes.modalBackground}>
           <DialogContentText id="alert-dialog-slide-description">
             You'll lose your record(s) after this section . We can't recover
-            them once you decide . Are you sure you want to permanently delete
+            them once you decide . Are you sure you want to permanently delete 
             them?
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
+        <DialogActions className={classes.modalBackground}>
           <Button onClick={handleClose} variant="outlined" color="primary">
             Cancel
           </Button>
