@@ -15,8 +15,14 @@ import axios from "axios";
 
 const useStyles = makeStyles({
   add: {
+    // top: "20px",
+    // left: "250px",
+    // width: "99px",
+    // height: "30px",
     border: "1px solid #14AFF1",
     borderRadius: "10px",
+    //font: "normal normal normal 20px/24px Ubuntu",
+    //letterSpacing: "0px",
     color: "#FFFFFF",
     opacity: "1",
   },
@@ -43,21 +49,33 @@ function AddButton() {
     setOpen(true);
   };
 
+  // const addData = () => {
+  //     axios({
+  //       method: 'post',
+  //       url: 'http://localhost:8080/1806138/add',
+  //       data: formData,
+  //       config: config
+  //     })
+  //     .then(response => {
+  //       console.log(response);
+  //     })
+  // }
   const addData = () => {
     try {
       const response = axios.post(
-        "http://localhost:8080/1806131/add/",
-        // {
-        // headers:{'Content-Type': 'application/json'},
-        /*params: */ {
-          nameCustomer: CustomerName,
-          custNumber: CustomerNo,
-          docId: InvNo,
-          totalOpenAmount: TotalAmount,
-          dueInDate: DueInDate,
-          notes: Notes,
+        "http://localhost:8080/1806138/add",
+        {},
+        {
+          headers: { "Content-Type": "x-www-form-urlencoded" },
+          params: {
+            nameCustomer: CustomerName,
+            custNumber: CustomerNo,
+            invoiceId: InvNo,
+            totalOpenAmount: TotalAmount,
+            dueInDate: DueInDate,
+            notes: Notes,
+          },
         }
-        // }
       );
 
       console.log("Returned data:", response);
@@ -70,12 +88,24 @@ function AddButton() {
     setOpen(false);
   };
 
+  const config = {
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+  };
   const [CustomerName, setCustomerName] = React.useState();
   const [CustomerNo, setCustomerNo] = React.useState();
   const [InvNo, setInvNo] = React.useState();
   const [TotalAmount, setTotalAmount] = React.useState();
   const [DueInDate, setDueInDate] = React.useState();
   const [Notes, setNotes] = React.useState();
+
+  // const formData = {
+  //     nameCustomer:CustomerName,
+  //     custNumber:CustomerNo,
+  //     docId:InvNo,
+  //     totalOpenAmount:TotalAmount,
+  //     dueInDate:DueInDate,
+  //     notes:Notes
+  // }
 
   const CustName = (e) => {
     setCustomerName(e.target.value);
@@ -117,13 +147,13 @@ function AddButton() {
       >
         <DialogTitle id="form-dialog-title" className={classes.modalBackground}>
           <Grid container xs={12}>
-            <Grid item xs={3}>
+            <Grid item xs={5}>
               {"Add Invoice"}
             </Grid>
-            <Grid item xs={8}></Grid>
+            <Grid item xs={6}></Grid>
             <Grid item xs={1}>
               <IconButton edgeEnd="end" onClick={handleClose}>
-                <CloseIcon />
+                <CloseIcon />{" "}
               </IconButton>
             </Grid>
           </Grid>

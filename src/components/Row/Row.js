@@ -160,7 +160,19 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   TableContainer: {
-    height: "315px",
+    height: "310px",
+    "&::-webkit-scrollbar": {
+      width: "5px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: "#273D49CC",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "#61707B",
+    },
+    "&::-webkit-scrollbar-thumb:hover": {
+      background: "#ccc",
+    },
   },
   scroll: {
     // position:"fixed",
@@ -174,15 +186,17 @@ export default function App() {
   const classes = useStyles();
   const [responseData, setResponseData] = React.useState([]);
   const [isNext, setNext] = React.useState(false);
-  const [pageCount, setCount] = React.useState(-1);
+  const [pageCount, setCount] = React.useState(1);
   const loadMoreData = () => {
-    setCount(pageCount + 1);
+    setCount(pageCount + 10);
   };
   React.useEffect(() => {
     // if (pageCount !== -1) {
     //   setNext(true);
     axios
-      .get(`http://localhost:8080/1806138/page=${pageCount}`)
+      .get(
+        `http://localhost:8080/1806138/listInvoice/getData?page=${pageCount}&limit=10`
+      )
       .then((response) => {
         setResponseData((prev) => [...prev, ...response.data]);
         setNext(true);
@@ -202,14 +216,14 @@ export default function App() {
         hasMore={isNext}
         loader={
           <div
-          // style={{
-          //   height: "80%",
-          //   paddingLeft: "35%",
-          //   overflow: "hidden"
-          // }}
+            style={{
+              height: "80%",
+              paddingLeft: "35%",
+              overflow: "hidden",
+            }}
           >
-            Loading....
-            {/* <CircularProgress /> */}
+            {/* Loading.... */}
+            <CircularProgress />
           </div>
         }
         scrollableTarget="scrollable"
