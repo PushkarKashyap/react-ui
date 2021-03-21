@@ -5,10 +5,10 @@ import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <div className="App">
-      <Container maxWidth="lg">
+    <div>
+      <Container maxWidth="xl">
         <Header />
-        <p className="app__invoice">Invoice List</p>
+        <p className='gridHeader'>Invoice List</p>
         <Content />
       </Container>
     </div>

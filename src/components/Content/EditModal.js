@@ -14,14 +14,21 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   edit: {
-    // // top: "20px",
-    // // left: "260px",
-    // // width: "80px",
-    // // height: "30px",
+    fontFamily: "Ubuntu",
+    font: "normal normal normal 20px/24px Ubuntu",
     border: "1px solid #97A1A9",
     borderRadius: "10px",
-    color: "#FFFFFF",
+    color: "#97A1A9",
     opacity: "1",
+    marginRight: "1vw",
+    // fontSize: "0.95vw",
+    alignSelf: "center",
+    textTransform: "none",
+    "&:hover": {
+      backgroundColor: "#14AFF1",
+      color: "white",
+      textTransform: "none",
+    },
   },
   saveButton: {
     background: "#14AFF1 0% 0% no-repeat padding-box",
@@ -47,14 +54,13 @@ function EditButton() {
     <div>
       <Button
         variant="outlined"
-        color="primary"
         className={classes.edit}
-        size="small"
+        //size="small"
         startIcon={<EditIcon />}
         onClick={handleClickOpen}
       >
         {" "}
-        edit
+        Edit
       </Button>
 
       <Dialog
@@ -89,7 +95,7 @@ function EditButton() {
                 label="Invoice Amount"
                 type="number"
                 variant="outlined"
-                size="small"
+                //size="small"
               />
             </Grid>
           </Grid>
@@ -105,7 +111,7 @@ function EditButton() {
                 label="notes"
                 type="text"
                 variant="outlined"
-                size="small"
+                //size="small"
               />
             </Grid>
           </Grid>

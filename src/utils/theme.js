@@ -14,5 +14,8 @@ export default createMuiTheme({
       light: "rgb(93,175,240,0.5)",
       dark: "rgb(93,175,240,0.2)",
     },
+    paperBg : {
+      
+    }
   },
 });

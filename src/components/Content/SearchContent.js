@@ -9,24 +9,30 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 
 const useStyles = makeStyles({
   searchButton: {
-    background: "#283A46 0% 0% no-repeat padding-box",
+    background: "#283A46",
     border: "1px solid #356680",
     borderRadius: "10px",
     color: "#FFFFFF",
     opacity: "1",
     textAlign: "left",
-  },
+    fontFamily: "Ubuntu",
+    font: "normal normal normal Ubuntu",
+    textTransform: "none",
+    },
 });
 
-function SearchComponent() {
+const SearchComponent = ({onSearch}) => 
+ {
   const classes = useStyles();
+
   return (
     <div>
-      {/* <Button variant="outlined" color="primary" className={classes.searchButton} size="small" endIcon={<SearchIcon/>}>Search by invoice number</Button> */}
-      {/* <TextField  label="Search by invoice number"  className={classes.searchButton} size="small" endIcon={<SearchIcon/>} /> */}
+      {/* <Button variant="outlined" color="primary" className={classes.searchButton} //size="small" endIcon={<SearchIcon/>}>Search by invoice number</Button> */}
+      {/* <TextField  label="Search by invoice number"  className={classes.searchButton} //size="small" endIcon={<SearchIcon/>} /> */}
 
-      {/* <Input  type="text" variant="outlined" color="primary"  placeholder="Search by invoice number" className={classes.searchButton} size="small" endIcon={<SearchIcon/>} ></Input> */}
+      {/* <Input  type="text" variant="outlined" color="primary"  placeholder="Search by invoice number" className={classes.searchButton} //size="small" endIcon={<SearchIcon/>} ></Input> */}
       <TextField
+        id="searchId"
         className={classes.searchButton}
         variant="outlined"
         placeholder="Search by invoice number"
@@ -34,7 +40,7 @@ function SearchComponent() {
         InputProps={{
           endAdornment: (
             <InputAdornment>
-              <IconButton>
+              <IconButton onClick={() => onSearch(Event)}>
                 <SearchIcon />
               </IconButton>
             </InputAdornment>
@@ -44,5 +50,6 @@ function SearchComponent() {
     </div>
   );
 }
+
 
 export default SearchComponent;

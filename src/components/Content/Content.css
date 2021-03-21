@@ -1,4 +1,4 @@
-.content {
+/* .content {
   border-radius: 10px;
   background-color: #2d4250;
   padding: 20px;
@@ -101,32 +101,9 @@
   justify-content: center;
 }
 
-/*.content__search {
-   top: 203px;
-  left: 1535px;
-  width: 300px;
-  height: 20px;
-  text-align: left;
-  font: normal normal normal Ubuntu;
-  letter-spacing: 0px;
-  color: #97a1a9;
-  opacity: 1;
-  margin: 10px;
-  background: transparent;
-  border: none;
-  text-decoration: none;
-  outline: none;
-} */
 
 .content__searchBox {
-  /* top: 191px;
-  left: 1520px;
-  width: 340px;
-  height: 45px; */
-  /* background: #283a46 0% 0% no-repeat padding-box; */
-
   opacity: 1;
-  /* display: flex; */
   margin: 10px;
 }
 
@@ -209,4 +186,4 @@
   opacity: 1;
   padding: 10px !important;
   color: #97a1a9;
-}
+} */

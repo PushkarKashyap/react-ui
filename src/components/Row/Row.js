@@ -1,13 +1,13 @@
 // import { Checkbox } from '@material-ui/core'
 // import { DataGrid } from '@material-ui/data-grid'
 // import React from "react";
-// import { withStyles, makeStyles } from '@material-ui/core/styles';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
+//  import { withStyles, makeStyles } from '@material-ui/core/styles';
+//  import Table from '@material-ui/core/Table';
+//  import TableBody from '@material-ui/core/TableBody';
+//  import TableCell from '@material-ui/core/TableCell';
+//  import TableContainer from '@material-ui/core/TableContainer';
+//  import TableHead from '@material-ui/core/TableHead';
+//  import TableRow from '@material-ui/core/TableRow';
 // import Paper from '@material-ui/core/Paper';
 
 // import './Row.css'
@@ -145,8 +145,10 @@
 // import "./styles.css";
 import React from "react";
 import axios from "axios";
+import "./Row.css";
 import Heading from "../Content/Heading";
 import {
+  Checkbox,
   CircularProgress,
   Table,
   TableBody,
@@ -156,11 +158,20 @@ import {
   TableRow,
 } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
+  root: {
+    // color:"blue",
+    "&$checked": {
+        color:"#14AFF1"
+    },
+    padding:"3px",
+    borderBottom:"none",
+    color:"#FFFFFF",
+    },
   TableContainer: {
-    height: "310px",
+    height: "480px",
     "&::-webkit-scrollbar": {
       width: "5px",
     },
@@ -181,22 +192,85 @@ const useStyles = makeStyles({
   tableBody: {
     position: "relative",
   },
+  table: {
+    minWidth: 700,
+  },
 });
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    color: "#97A1A9",
+  },
+  body: {
+    color: "#ffffff",
+    border: "0px",
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: "#283A46",
+    },
+  },
+}))(TableRow);
+
+
+
 export default function App() {
   const classes = useStyles();
   const [responseData, setResponseData] = React.useState([]);
   const [isNext, setNext] = React.useState(false);
   const [pageCount, setCount] = React.useState(1);
+  const [selected, setSelected] = React.useState([]);
   const loadMoreData = () => {
     setCount(pageCount + 10);
   };
+
+  const handleSelectAllClick = (event) => {
+    if (event.target.checked) {
+      const newSelected = responseData.map((n) => n.docId);
+      setSelected(newSelected);
+      return;
+    }
+    setSelected([]);
+    console.log(selected);
+  };
+  
+  const handleClick = (event, docId, total_open_amount, notes) => {
+    const selectedIndex = selected.indexOf(docId);
+    let newSelected = [];
+    let newAmount = [];
+    let newNotes = [];
+  
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, docId);
+      // newAmount = newAmount.concat(totalOpenAmount, amount);
+      // newNotes = newNotes.concat(Notes, notes)
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+      // newAmount = newAmount.concat(totalOpenAmount, slice(1));
+      // newNotes = newNotes.concat(Notes, slice(1))
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+      // newAmount = newAmount.concat(totalOpenAmount.slice(0, -1));
+      // newNotes = newNotes.concat(notes, slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+  
+    setSelected(newSelected);
+    console.log(newSelected);
+  };
+  const isSelected = (rowId) => selected.indexOf(rowId) !== -1
   React.useEffect(() => {
     // if (pageCount !== -1) {
     //   setNext(true);
     axios
-      .get(
-        `http://localhost:8080/1806138/listInvoice/getData?page=${pageCount}&limit=10`
-      )
+      .get(`http://localhost:8080/1806138/listInvoice?page=${pageCount}`)
       .then((response) => {
         setResponseData((prev) => [...prev, ...response.data]);
         setNext(true);
@@ -230,22 +304,67 @@ export default function App() {
       >
         {
           <div>
-            <Table>
-              <TableHead className={classes.scroll}>
-                <Heading />
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell className={classes.root}>
+                    <Checkbox
+                      padding="checkbox"
+                      classes={{ root: classes.root, checked: classes.checked }}
+                      onChange={handleSelectAllClick}
+                      checked={
+                        responseData.length > 0 &&
+                        selected.length === responseData.length
+                      }
+                    />
+                  </StyledTableCell>
+                  <StyledTableCell>Cust Name</StyledTableCell>
+                  <StyledTableCell>Cust No</StyledTableCell>
+                  <StyledTableCell>Inv No</StyledTableCell>
+                  <StyledTableCell>Amount</StyledTableCell>
+                  <StyledTableCell>Due Date</StyledTableCell>
+                  <StyledTableCell>Notes</StyledTableCell>
+                </TableRow>
               </TableHead>
               <TableBody className={classes.tableBody}>
                 {responseData.map((data, index) => {
+                  const isItemSelected = isSelected(data.docId);
                   return (
                     <>
-                      <TableRow>
-                        <TableCell>{data.nameCustomer}</TableCell>
-                        <TableCell>{data.custNumber}</TableCell>
-                        <TableCell>{data.docId}</TableCell>
-                        <TableCell>{data.totalOpenAmount}</TableCell>
-                        <TableCell>{data.dueInDate}</TableCell>
-                        <TableCell>{data.notes}</TableCell>
-                      </TableRow>
+                      <StyledTableRow
+                        onClick={(event) =>
+                          handleClick(
+                            event,
+                            data.docId,
+                            data.total_open_amount,
+                            data.notes
+                          )
+                        }
+                        // role="checkbox"
+                        // aria-checked={isItemSelected}
+                        key={data.docId}
+                        // selected={isItemSelected}
+                      >
+                        <StyledTableCell className={classes.root}>
+                          <Checkbox
+                            padding="checkbox"
+                            classes={{
+                              root: classes.root,
+                              checked: classes.checked,
+                            }}
+                            checked={isItemSelected}
+                            inputProps={{ "aria-label": "primary checkbox" }}
+                          />
+                        </StyledTableCell>
+                        <StyledTableCell>{data.nameCustomer}</StyledTableCell>
+                        <StyledTableCell>{data.custNumber}</StyledTableCell>
+                        <StyledTableCell>{data.docId}</StyledTableCell>
+                        <StyledTableCell>
+                          {data.totalOpenAmount}
+                        </StyledTableCell>
+                        <StyledTableCell>{data.dueInDate}</StyledTableCell>
+                        <StyledTableCell>{data.notes}</StyledTableCell>
+                      </StyledTableRow>
                     </>
                   );
                 })}
