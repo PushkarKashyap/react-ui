@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   paperClass: {
     borderRadius: 10,
     opacity: 1,
-    padding: "2vh 1.5vw" ,
+    padding: "2vh 1.5vw",
     background: "#273D49CC 0% 0% no-repeat padding-box",
   },
   rghtBtnClass: {
@@ -47,11 +47,11 @@ const Content = () => {
 
   const [search, setSearch] = React.useState(null);
 
-  const onSearch = (event) => { // the callback. Use a better name
+  const onSearch = (event) => {
+    // the callback. Use a better name
     console.log(event);
     setSearch();
   };
-
 
   return (
     /*     <div className="content">
@@ -95,8 +95,8 @@ const Content = () => {
               justify="flex-start"
               alignItems="center"
             >
-              <PredictButton/>
-              <ViewCorrespondance/>
+              <PredictButton />
+              <ViewCorrespondance />
             </Grid>
           </Grid>
           <Grid item xs={6}>
@@ -109,22 +109,21 @@ const Content = () => {
               <AddButton />
               <EditButton />
               <DeleteButton />
-              <SearchComponent  onSearch={onSearch}/>
+              {/* <SearchComponent  onSearch={onSearch}/> */}
             </Grid>
           </Grid>
         </Grid>
-      
 
-      <Row
-        name="Andrea James"
-        id="2523532"
-        invoice="73457346735"
-        amount="122.87K"
-        duedate="23-Jan-2021"
-        paymentDate="--"
-        agingBucket="--"
-        notes="Lorem Ipsum dolor..."
-      />
+        <Row
+          name="Andrea James"
+          id="2523532"
+          invoice="73457346735"
+          amount="122.87K"
+          duedate="23-Jan-2021"
+          paymentDate="--"
+          agingBucket="--"
+          notes="Lorem Ipsum dolor..."
+        />
       </Paper>
     </div>
   );

@@ -161,17 +161,18 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
+  checked: {},
   root: {
     // color:"blue",
     "&$checked": {
-        color:"#14AFF1"
+      color: "#14AFF1",
     },
-    padding:"3px",
-    borderBottom:"none",
-    color:"#FFFFFF",
-    },
+    padding: "3px",
+    borderBottom: "none",
+    color: "#FFFFFF",
+  },
   TableContainer: {
-    height: "480px",
+    height: "510px",
     "&::-webkit-scrollbar": {
       width: "5px",
     },
@@ -215,8 +216,6 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-
-
 export default function App() {
   const classes = useStyles();
   const [responseData, setResponseData] = React.useState([]);
@@ -236,13 +235,13 @@ export default function App() {
     setSelected([]);
     console.log(selected);
   };
-  
+
   const handleClick = (event, docId, total_open_amount, notes) => {
     const selectedIndex = selected.indexOf(docId);
     let newSelected = [];
     let newAmount = [];
     let newNotes = [];
-  
+
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, docId);
       // newAmount = newAmount.concat(totalOpenAmount, amount);
@@ -261,11 +260,11 @@ export default function App() {
         selected.slice(selectedIndex + 1)
       );
     }
-  
+
     setSelected(newSelected);
     console.log(newSelected);
   };
-  const isSelected = (rowId) => selected.indexOf(rowId) !== -1
+  const isSelected = (rowId) => selected.indexOf(rowId) !== -1;
   React.useEffect(() => {
     // if (pageCount !== -1) {
     //   setNext(true);
@@ -323,6 +322,8 @@ export default function App() {
                   <StyledTableCell>Inv No</StyledTableCell>
                   <StyledTableCell>Amount</StyledTableCell>
                   <StyledTableCell>Due Date</StyledTableCell>
+                  <StyledTableCell>Delay</StyledTableCell>
+                  <StyledTableCell>Predicted Ageing Bucket</StyledTableCell>
                   <StyledTableCell>Notes</StyledTableCell>
                 </TableRow>
               </TableHead>
@@ -363,6 +364,8 @@ export default function App() {
                           {data.totalOpenAmount}
                         </StyledTableCell>
                         <StyledTableCell>{data.dueInDate}</StyledTableCell>
+                        <StyledTableCell>--</StyledTableCell>
+                        <StyledTableCell>--</StyledTableCell>
                         <StyledTableCell>{data.notes}</StyledTableCell>
                       </StyledTableRow>
                     </>

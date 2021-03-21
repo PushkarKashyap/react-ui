@@ -34,8 +34,8 @@ const useStyles = makeStyles({
     background: "#14AFF1 0% 0% no-repeat padding-box",
   },
   modalBackground: {
-    backgroundColor: "#2A3E4C"
-  }
+    backgroundColor: "#2A3E4C",
+  },
 });
 function DeleteButton() {
   const classes = useStyles();
@@ -61,34 +61,50 @@ function DeleteButton() {
         Delete
       </Button>
       <Dialog
+        PaperProps={{
+          style: {
+            backgroundColor: "#2A3E4C",
+            boxShadow: "none",
+            color: "#ffffff",
+            font: "normal normal normal Ubuntu",
+          },
+        }}
         open={open}
         keepMounted
         onClose={handleClose}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-        
+        aria-labelledby="form-dialog-title"
+        maxWidth="lg"
       >
-        <DialogTitle id="alert-dialog-slide-title" className={classes.modalBackground}>
+        <DialogTitle id="alert-dialog-title">
           <Grid container xs={12}>
             <Grid item xs={5}>
               {"Delete Record(s)? "}
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs={1}>
-              <IconButton edgeEnd="end" onClick={handleClose}>
+              <IconButton
+                edgeEnd="end"
+                style={{ color: "#97A1A9" }}
+                onClick={handleClose}
+              >
                 <CloseIcon />{" "}
               </IconButton>
             </Grid>
           </Grid>
         </DialogTitle>
-        <DialogContent className={classes.modalBackground}>
-          <DialogContentText id="alert-dialog-slide-description">
+        <DialogContent dividers>
+          <DialogContentText
+            id="alert-dialog-slide-description"
+            style={{ color: "#ffffff" }}
+          >
             You'll lose your record(s) after this section . We can't recover
-            them once you decide . Are you sure you want to permanently delete 
-            them?
+            them once you decide.<br></br>
+            <br></br>
+            Are you sure you want to{" "}
+            <span style={{ color: "red" }}>permanently delete </span>them?
           </DialogContentText>
         </DialogContent>
-        <DialogActions className={classes.modalBackground}>
+        <DialogActions>
           <Button onClick={handleClose} variant="outlined" color="primary">
             Cancel
           </Button>

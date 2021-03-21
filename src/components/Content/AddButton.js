@@ -56,16 +56,14 @@ const useStyles = makeStyles({
       textTransform: "none",
     },
   },
-  txtField : {
-    marginBottom : "2vh" ,
+  txtField: {
+    marginBottom: "2vh",
     border: "1px solid #356680",
-    borderRadius : "10px",
-    color : "#ffffff",
-    width : "80%",
+    borderRadius: "10px",
+    color: "#ffffff",
+    width: "80%",
   },
 });
-
-
 
 function AddButton() {
   const classes = useStyles();
@@ -93,15 +91,11 @@ function AddButton() {
   // }
 
   const checkData = () => {
-    if (CustomerName && CustomerNo && InvNo && TotalAmount && DueInDate)
-    {
+    if (CustomerName && CustomerNo && InvNo && TotalAmount && DueInDate) {
       addData();
+    } else {
+      alert("All fileds are madatory except Notes!");
     }
-    else
-    {
-      alert('All fileds are madatory except Notes!');
-    }
-
   };
 
   const addData = async () => {
@@ -176,10 +170,9 @@ function AddButton() {
     setDueInDate("");
     setNotes("");
     Array.from(document.querySelectorAll("input")).forEach(
-      input => (input.value = "")
+      (input) => (input.value = "")
     );
-
-  };  
+  };
 
   return (
     <div>
@@ -207,7 +200,7 @@ function AddButton() {
         keepMounted
         onClose={handleClickClose}
         aria-labelledby="form-dialog-title"
-        maxWidth="lg"
+        maxWidth="md"
       >
         <DialogTitle id="form-dialog-title">
           <Grid container xs={12}>
@@ -225,90 +218,116 @@ function AddButton() {
             </Grid>
           </Grid>
         </DialogTitle>
-        
+
         <DialogContent dividers>
-        <form>
-        
-          <Grid container xs={12}>
-            <Grid container xs={6}>
-              <Grid container xs={12}>
-              
-                <Grid item xs={6}> 
-                <span htmlFor="nameCustomer">Customer name</span>
+          <form>
+            <Grid container xs={12}>
+              <Grid container xs={6}>
+                <Grid container xs={12}>
+                  <Grid item xs={6}>
+                    <span htmlFor="nameCustomer">Customer name</span>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      className={classes.txtField}
+                      id="nameCustomer"
+                      required
+                      type="text"
+                      variant="outlined"
+                      onChange={CustName}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  <TextField className={classes.txtField}  id="nameCustomer" required type="text" variant="outlined" onChange={CustName}/>
-                </Grid>
-                
-              </Grid>
-            </Grid>
-              
-            <Grid container xs={6}>
-              <Grid container xs={12}>
-              
-                <Grid item xs={6}> 
-                <span htmlFor="dueInDate">Due Date</span>
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField className={classes.txtField}  id="dueInDate" required type="date" variant="outlined" onChange={DueDate}/>
-                </Grid>
-                
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid container xs={12}>
-            <Grid container xs={6}>
-              <Grid container xs={12}>
-              
-                <Grid item xs={6}> 
-                <span htmlFor="custNumber">Customer No.</span>
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField className={classes.txtField}  id="custNumber" required type="text" variant="outlined" onChange={CustNo}/>
-                </Grid>
-                
-              </Grid>
-              
-              <Grid container xs={12}>
-              
-                <Grid item xs={6}> 
-                <span htmlFor="invoiceId">Invoice No.</span>
-                
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField className={classes.txtField}  id=" invoiceId" required  variant="outlined" onChange={InvoiceNo}/>
-                </Grid>
-                
-              </Grid>
-              
-              <Grid container xs={12}>
-              
-                <Grid item xs={6}> 
-                <span htmlFor="totalOpenAmount">Invoice Amount</span>
-                </Grid>
-
-                <Grid item xs={6}>
-                  <TextField className={classes.txtField}  id=" totalOpenAmount" required variant="outlined" onChange={Amount}/>
-                </Grid>
-                
-              </Grid>
-            </Grid>
-            <Grid container xs={6}>
-              
-              <Grid item xs={6}> 
-              <span htmlFor="notes">Notes</span>
               </Grid>
 
-              <Grid item xs={6}>
-                <TextField className={classes.txtField}  id="notes" multiline rows={5} type="text" variant="outlined" onChange={Anote}/>
+              <Grid container xs={6}>
+                <Grid container xs={12}>
+                  <Grid item xs={6}>
+                    <span htmlFor="dueInDate">Due Date</span>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      className={classes.txtField}
+                      id="dueInDate"
+                      required
+                      type="date"
+                      variant="outlined"
+                      onChange={DueDate}
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
-              
             </Grid>
-          </Grid>
+
+            <Grid container xs={12}>
+              <Grid container xs={6}>
+                <Grid container xs={12}>
+                  <Grid item xs={6}>
+                    <span htmlFor="custNumber">Customer No.</span>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      className={classes.txtField}
+                      id="custNumber"
+                      required
+                      type="text"
+                      variant="outlined"
+                      onChange={CustNo}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container xs={12}>
+                  <Grid item xs={6}>
+                    <span htmlFor="invoiceId">Invoice No.</span>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      className={classes.txtField}
+                      id=" invoiceId"
+                      required
+                      variant="outlined"
+                      onChange={InvoiceNo}
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid container xs={12}>
+                  <Grid item xs={6}>
+                    <span htmlFor="totalOpenAmount">Invoice Amount</span>
+                  </Grid>
+
+                  <Grid item xs={6}>
+                    <TextField
+                      className={classes.txtField}
+                      id=" totalOpenAmount"
+                      required
+                      variant="outlined"
+                      onChange={Amount}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid container xs={6}>
+                <Grid item xs={6}>
+                  <span htmlFor="notes">Notes</span>
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    className={classes.txtField}
+                    id="notes"
+                    multiline
+                    rows={5}
+                    type="text"
+                    variant="outlined"
+                    onChange={Anote}
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
           </form>
         </DialogContent>
-        
 
         <DialogActions>
           <Grid container xs={12} justify="space-between">

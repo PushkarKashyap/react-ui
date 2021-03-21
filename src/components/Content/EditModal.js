@@ -15,7 +15,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles({
   edit: {
     fontFamily: "Ubuntu",
-    font: "normal normal normal 20px/24px Ubuntu",
+    font: "normal normal normal Ubuntu",
     border: "1px solid #97A1A9",
     borderRadius: "10px",
     color: "#97A1A9",
@@ -34,8 +34,8 @@ const useStyles = makeStyles({
     background: "#14AFF1 0% 0% no-repeat padding-box",
   },
   modalBackground: {
-    background: "#2A3E4C"
-  }
+    background: "#2A3E4C",
+  },
 });
 
 function EditButton() {
@@ -64,26 +64,38 @@ function EditButton() {
       </Button>
 
       <Dialog
+        PaperProps={{
+          style: {
+            backgroundColor: "#2A3E4C",
+            boxShadow: "none",
+            color: "#ffffff",
+            font: "normal normal normal Ubuntu",
+          },
+        }}
         open={open}
         keepMounted
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
-        
+        maxWidth="lg"
       >
-        <DialogTitle id="form-dialog-title" className={classes.modalBackground}>
+        <DialogTitle id="form-dialog-title">
           <Grid container xs={12}>
-            <Grid item xs={5}>
+            <Grid item xs={5} style={{ paddingTop: "3px" }}>
               {"Add Invoice"}
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs={1}>
-              <IconButton edgeEnd="end" onClick={handleClose}>
+              <IconButton
+                edgeEnd="end"
+                style={{ color: "#97A1A9" }}
+                onClick={handleClose}
+              >
                 <CloseIcon />{" "}
               </IconButton>
             </Grid>
           </Grid>
         </DialogTitle>
-        <DialogContent className={classes.modalBackground}>
+        <DialogContent dividers>
           <Grid container spacing={1}>
             <Grid item xs={6}>
               Invoice Amount
@@ -92,8 +104,7 @@ function EditButton() {
             <Grid item xs={6}>
               <TextField
                 id="name"
-                label="Invoice Amount"
-                type="number"
+                type="text"
                 variant="outlined"
                 //size="small"
               />
@@ -108,15 +119,16 @@ function EditButton() {
             <Grid item xs={6}>
               <TextField
                 id="notes"
-                label="notes"
                 type="text"
                 variant="outlined"
+                multiline
+                rows={5}
                 //size="small"
               />
             </Grid>
           </Grid>
         </DialogContent>
-        <DialogActions className={classes.modalBackground}>
+        <DialogActions>
           <Grid container xs={12}>
             <Grid item xs={2}>
               <Button onClick={handleClose} color="primary">
