@@ -26,20 +26,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "2vh 1.5vw",
     background: "#273D49CC 0% 0% no-repeat padding-box",
   },
-  rghtBtnClass: {
-    marginLeft: "1vw",
-    minWidth: "5vw",
-    minHeight: "2.188vw",
-    fontSize: "0.95vw",
-    border: "1px solid #14AFF1",
-    borderRadius: "10px",
-    alignSelf: "center",
-    color: "#ffffff",
-    "&:hover": {
-      backgroundColor: "#14AFF1",
-      color: "white",
-    },
-  },
 }));
 
 const Content = () => {
@@ -47,44 +33,12 @@ const Content = () => {
 
   const [search, setSearch] = React.useState(null);
 
-  const onSearch = (event) => {
-    // the callback. Use a better name
-    console.log(event);
+  const onSearch = (searchId) => {
+    console.log(searchId);
     setSearch();
   };
 
   return (
-    /*     <div className="content">
-      <div className="content__box">
-        <div className="content__boxHeader">
-          <div className="content__predict">
-            <PredictButton />
-          </div>
-
-          <div className="content__correspondance">
-            <ViewCorrespondance />
-          </div>
-        </div>
-
-        <div className="content__other">
-          <div className="content__add">
-            <AddButton />
-          </div>
-
-          <div className="content__edit">
-            <EditButton />
-          </div>
-
-          <div className="content__minimize">
-            <DeleteButton />
-          </div>
-
-          <div className="content__searchBox">
-            <SearchComponent />
-          </div>
-        </div>
-      </div> */
-
     <div className={classes.root}>
       <Paper className={classes.paperClass}>
         <Grid container>
@@ -109,20 +63,13 @@ const Content = () => {
               <AddButton />
               <EditButton />
               <DeleteButton />
-              {/* <SearchComponent  onSearch={onSearch}/> */}
+              <SearchComponent  onSearch={onSearch}/>
             </Grid>
           </Grid>
         </Grid>
 
         <Row
-          name="Andrea James"
-          id="2523532"
-          invoice="73457346735"
-          amount="122.87K"
-          duedate="23-Jan-2021"
-          paymentDate="--"
-          agingBucket="--"
-          notes="Lorem Ipsum dolor..."
+          searchId={search}
         />
       </Paper>
     </div>

@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     backgroundColor: "#2A3E4C",
   },
 });
-function DeleteButton() {
+function DeleteButton({onDelete}) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -82,8 +82,7 @@ function DeleteButton() {
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs={1}>
-              <IconButton
-                edgeEnd="end"
+              <IconButton                
                 style={{ color: "#97A1A9" }}
                 onClick={handleClose}
               >
@@ -109,7 +108,7 @@ function DeleteButton() {
             Cancel
           </Button>
           <Button
-            onClick={handleClose}
+            onClick={function(event){ handleClose(); onDelete()}}
             color="primary"
             variant="contained"
             className={classes.del}

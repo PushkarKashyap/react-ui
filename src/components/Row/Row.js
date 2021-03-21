@@ -1,152 +1,6 @@
-// import { Checkbox } from '@material-ui/core'
-// import { DataGrid } from '@material-ui/data-grid'
-// import React from "react";
-//  import { withStyles, makeStyles } from '@material-ui/core/styles';
-//  import Table from '@material-ui/core/Table';
-//  import TableBody from '@material-ui/core/TableBody';
-//  import TableCell from '@material-ui/core/TableCell';
-//  import TableContainer from '@material-ui/core/TableContainer';
-//  import TableHead from '@material-ui/core/TableHead';
-//  import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
-
-// import './Row.css'
-// import { FunctionsRounded } from '@material-ui/icons';
-
-// // const columns = [
-// //     { field: 'name', headerName: 'Customer Name', width: 158 },
-// //     { field: 'id', headerName: 'Customer #', width: 130 },
-// //     { field: 'invoice', headerName: 'Invoice #', width: 130 },
-// //     {
-// //         field: 'amount',
-// //         headerName: 'Invoice Amount',
-// //         type: 'number',
-// //         width: 170,
-// //     },
-// //     {
-// //         field: 'duedate',
-// //         headerName: 'Due Date',
-// //         width: 160,
-// //     },
-// //     {
-// //         field: 'paymentdate',
-// //         headerName: 'Predicted Payment Date',
-// //         width: 180,
-// //     },
-// //     {
-// //         field: 'agingBucket',
-// //         headerName: 'Predicted Aging Bucket',
-// //         width: 160,
-// //     },
-// //     {
-// //         field: 'notes',
-// //         headerName: 'Notes',
-// //         width: 120,
-// //     },
-// // ];
-
-// const StyledTableCell = withStyles((theme) => ({
-//     head: {
-//         backgroundColor: theme.palette.common.black,
-//         color: theme.palette.common.white,
-//     },
-//     body: {
-//         fontSize: 14,
-//     },
-// }))(TableCell);
-
-// const StyledTableRow = withStyles((theme) => ({
-//     root: {
-//         '&:nth-child(odd)': {
-//             backgroundColor: "blue",
-//         },
-//     },
-// }))(TableRow);
-
-// function createData(name, id, invoice, amount, duedate, paymentDate, agingBucket, notes) {
-//     return { name, id, invoice, amount, duedate, paymentDate, agingBucket, notes };
-// }
-
-// const rows = [
-//     createData('Andrea James', 2523532, 73457346735, '122.87K', '23-Jan-2021', '--', '--', 'Lorem Ipsum dolor...'),
-//     createData('Andrea James', 2523532, 73457346735, '122.87K', '23-Jan-2021', '--', '--', 'Lorem Ipsum dolor...'),
-//     createData('Andrea James', 2523532, 73457346735, '122.87K', '23-Jan-2021', '--', '--', 'Lorem Ipsum dolor...'),
-//     createData('Andrea James', 2523532, 73457346735, '122.87K', '23-Jan-2021', '--', '--', 'Lorem Ipsum dolor...'),
-//     createData('Andrea James', 2523532, 73457346735, '122.87K', '23-Jan-2021', '--', '--', 'Lorem Ipsum dolor...'),
-//     createData('Andrea James', 2523532, 73457346735, '122.87K', '23-Jan-2021', '--', '--', 'Lorem Ipsum dolor...'),
-// ];
-
-// const useStyles = makeStyles({
-//     table: {
-//         minWidth: 700,
-//         color: '#97A1A9'
-//     },
-//     checked: {
-
-//     },
-//     root: {
-//         // color:"blue",
-//         "&$checked": {
-//             color:"#14AFF1"
-//         }
-//     },
-// });
-
-// const Row = ({ name, id, invoice, amount, duedate, paymentDate, agingBucket, notes }) => {
-//     const classes = useStyles();
-
-//     const HandleClick =()=> {
-//         const [checked, setChecked] = React.useState(false)
-//         setChecked(true)
-//     }
-//     return (
-//         <div className='row'>
-//             <TableContainer>
-//                 <Table aria-label="customized table">
-//                     <TableHead>
-//                         <TableRow>
-//                         <StyledTableCell><Checkbox classes={{root:classes.root, checked:classes.checked}} onClick={HandleClick}></Checkbox></StyledTableCell>
-//                             <StyledTableCell>Customer Name</StyledTableCell>
-//                             <StyledTableCell align="right">Customer #</StyledTableCell>
-//                             <StyledTableCell align="right">Invoice #</StyledTableCell>
-//                             <StyledTableCell align="right">Invoice Amount</StyledTableCell>
-//                             <StyledTableCell align="right">Due Date</StyledTableCell>
-//                             <StyledTableCell align="right">Predicted Payment Date</StyledTableCell>
-//                             <StyledTableCell align="right">Predicted Aging Bucket</StyledTableCell>
-//                             <StyledTableCell align="right">Notes</StyledTableCell>
-//                         </TableRow>
-//                     </TableHead>
-//                     <TableBody>
-//                         {rows.map((row) => (
-
-//                             <StyledTableRow key={row.name}>
-//                                 <StyledTableCell><Checkbox classes={{root:classes.root, checked:classes.checked}}></Checkbox></StyledTableCell>
-//                                 <StyledTableCell component="th" scope="row">
-//                                     {row.name}
-//                                 </StyledTableCell>
-//                                 <StyledTableCell align="right">{row.id}</StyledTableCell>
-//                                 <StyledTableCell align="right">{row.invoice}</StyledTableCell>
-//                                 <StyledTableCell align="right">{row.amount}</StyledTableCell>
-//                                 <StyledTableCell align="right">{row.duedate}</StyledTableCell>
-//                                 <StyledTableCell align="right">{row.paymentDate}</StyledTableCell>
-//                                 <StyledTableCell align="right">{row.agingBucket}</StyledTableCell>
-//                                 <StyledTableCell align="right">{row.notes}</StyledTableCell>
-//                             </StyledTableRow>
-//                         ))}
-//                     </TableBody>
-//                 </Table>
-//             </TableContainer>
-//         </div>
-//     )
-// }
-
-// export default Row
-
-// import "./styles.css";
 import React from "react";
 import axios from "axios";
 import "./Row.css";
-import Heading from "../Content/Heading";
 import {
   Checkbox,
   CircularProgress,
@@ -159,10 +13,27 @@ import {
 } from "@material-ui/core";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import EditButton from "../Content/EditModal";
+import AddButton from "../Content/AddButton";
+import DeleteButton from "../Content/DeleteButton";
+import SearchComponent from "../Content/SearchContent";
+import ViewCorrespondance from "../Content/View";
+import PredictButton from "../Content/Predict";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
-  checked: {},
   root: {
+    flexGrow: 1,
+  },
+  paperClass: {
+    borderRadius: 10,
+    opacity: 1,
+    padding: "2vh 1.5vw",
+    background: "#273D49CC 0% 0% no-repeat padding-box",
+  },
+  checked: {},
+  checkRoot: {
     // color:"blue",
     "&$checked": {
       color: "#14AFF1",
@@ -216,44 +87,169 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-export default function App() {
+const Row = () => {
   const classes = useStyles();
-  const [responseData, setResponseData] = React.useState([]);
+  const [search, setSearch] = React.useState(null);
+  const [deleted, setDeleted] = React.useState(false);
+  const [updated, setUpdated] = React.useState(false);
+
+  const onSearch = (searchId) => {
+    console.log("inside search");
+    console.log(searchId);
+    setSearch(searchId);
+    setCount(pageCount + 1);
+  };
+
+  const onDelete = () => {
+    console.log("inside delete");
+    console.log(selected);
+    deleteData(selected.toString());
+  };
+
+  const onEdit = (totalOpenAmount, notes) => {
+    console.log("inside edit");
+    console.log(selected);
+    if(selected && selected[0])
+    {
+      editData(selected[0], totalOpenAmount, notes);
+    }
+    else
+    {
+      alert("Please select a record to edit!")
+    }   
+  };
+  
+  const onAdd = () => {
+    console.log("inside add after update");
+    setCount(pageCount + 1); 
+  };
+
+
+  const editData = async (docId, totalOpenAmount, notes) => {
+    console.log(docId);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/1806138/update",
+        {},
+        {
+          headers: { "Content-Type": "x-www-form-urlencoded" },
+          params: {
+            docId: docId,
+            totalOpenAmount : totalOpenAmount,
+            notes : notes
+          },
+        }
+      ).then((response) => {
+        console.log("Returned data:", response);
+        
+        if(response.data)
+        {
+          setUpdated(true);
+          alert('Record updated successfully!');
+          setCount(pageCount + 1);
+        }
+        else{
+          alert('Record could not be updated.')
+        }
+          
+      })
+    } catch (e) {
+      console.log(`Axios request failed: ${e}`);
+    }
+  };
+
+  const deleteData = async (selectedStr) => {
+    console.log(selectedStr);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/1806138/delete",
+        {},
+        {
+          headers: { "Content-Type": "x-www-form-urlencoded" },
+          params: {
+            docList: selectedStr
+          },
+        }
+      ).then((response) => {
+        console.log("Returned data:", response);
+        
+        if(response.data)
+        {
+          setDeleted(true);
+          alert('Records deleted successfully!');
+          setCount(pageCount + 1);
+        }
+        else{
+          alert('Records could not be deleted.')
+        }
+          
+      })
+    } catch (e) {
+      console.log(`Axios request failed: ${e}`);
+    }
+  };
+
+
+
+  const [responseData, setResponseData] = React.useState([
+/*     {
+          nameCustomer:"TIMES corp",
+          custNumber:"0200458131",
+          docId:"1928501762",
+          totalOpenAmount:"1191.32",
+          dueInDate:"2019-01-16",
+          notes:""
+    } */
+]);
   const [isNext, setNext] = React.useState(false);
   const [pageCount, setCount] = React.useState(1);
   const [selected, setSelected] = React.useState([]);
+  //const [searchString, setSearchString] = React.useState(searchId);
   const loadMoreData = () => {
     setCount(pageCount + 10);
+  };
+
+  const searchData = async (searchId) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/1806138/search",
+        {},
+        {
+          headers: { "Content-Type": "x-www-form-urlencoded" },
+          params: {
+            invoiceId: searchId
+          },
+        }
+      ).then((response) => {
+        console.log("Returned data:", response);
+        setResponseData((prev) => [...prev, ...response.data]);
+        setNext(false);
+      })
+    } catch (e) {
+      console.log(`Axios request failed: ${e}`);
+    }
   };
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelected = responseData.map((n) => n.docId);
       setSelected(newSelected);
+      console.log(selected);
       return;
     }
     setSelected([]);
-    console.log(selected);
   };
 
   const handleClick = (event, docId, total_open_amount, notes) => {
     const selectedIndex = selected.indexOf(docId);
     let newSelected = [];
-    let newAmount = [];
-    let newNotes = [];
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, docId);
-      // newAmount = newAmount.concat(totalOpenAmount, amount);
-      // newNotes = newNotes.concat(Notes, notes)
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
-      // newAmount = newAmount.concat(totalOpenAmount, slice(1));
-      // newNotes = newNotes.concat(Notes, slice(1))
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
-      // newAmount = newAmount.concat(totalOpenAmount.slice(0, -1));
-      // newNotes = newNotes.concat(notes, slice(0, -1));
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
@@ -266,22 +262,63 @@ export default function App() {
   };
   const isSelected = (rowId) => selected.indexOf(rowId) !== -1;
   React.useEffect(() => {
-    // if (pageCount !== -1) {
-    //   setNext(true);
-    axios
+
+    if(!search || search === "")
+    {
+      axios
       .get(`http://localhost:8080/1806138/listInvoice?page=${pageCount}`)
       .then((response) => {
+        //filter deleted / updated records
+        if (deleted || updated)
+        {
+          setResponseData([]);
+          setSelected([]);
+        }
+        //
         setResponseData((prev) => [...prev, ...response.data]);
         setNext(true);
       })
       .catch((error) => {
         console.log(error);
       });
-    // }
+    }
+    else
+    {
+      setResponseData([]);
+      searchData(search);
+    }
   }, [pageCount]);
 
   return (
-    // <div className="App" id="scrollable">
+    <div className={classes.root}>
+      <Paper className={classes.paperClass}>
+        <Grid container>
+          <Grid item xs={6}>
+            <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="center"
+            >
+              <PredictButton />
+              <ViewCorrespondance />
+            </Grid>
+          </Grid>
+          <Grid item xs={6}>
+            <Grid
+              container
+              direction="row"
+              justify="flex-end"
+              alignItems="center"
+            >
+              <AddButton onAdd={onAdd} />
+              <EditButton onEdit={onEdit}/>
+              <DeleteButton onDelete={onDelete}/>
+              <SearchComponent  onSearch={onSearch}/>
+            </Grid>
+          </Grid>
+        </Grid>
+
     <TableContainer id="scrollable" className={classes.TableContainer}>
       <InfiniteScroll
         dataLength={responseData.length}
@@ -309,7 +346,7 @@ export default function App() {
                   <StyledTableCell className={classes.root}>
                     <Checkbox
                       padding="checkbox"
-                      classes={{ root: classes.root, checked: classes.checked }}
+                      classes={{ root: classes.checkRoot, checked: classes.checked }}
                       onChange={handleSelectAllClick}
                       checked={
                         responseData.length > 0 &&
@@ -350,7 +387,7 @@ export default function App() {
                           <Checkbox
                             padding="checkbox"
                             classes={{
-                              root: classes.root,
+                              root: classes.checkRoot,
                               checked: classes.checked,
                             }}
                             checked={isItemSelected}
@@ -377,6 +414,10 @@ export default function App() {
         }
       </InfiniteScroll>
     </TableContainer>
-    // </div>
+    </Paper>
+    </div>
   );
 }
+
+
+export default Row;

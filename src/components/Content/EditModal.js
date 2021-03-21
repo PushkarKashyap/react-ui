@@ -38,10 +38,24 @@ const useStyles = makeStyles({
   },
 });
 
-function EditButton() {
+function EditButton({onEdit}) {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
+  const [totalOpenAmount, setTotalOpeAmount] = React.useState();
+  const [notes, setNotes] = React.useState();
+
+
+
+  const Amount = (e) => {
+    setTotalOpeAmount(e.target.value);
+  };
+
+  const Notes = (e) => {
+    setNotes(e.target.value);
+  };
+
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -49,7 +63,18 @@ function EditButton() {
 
   const handleClose = () => {
     setOpen(false);
+    handleClickReset();
   };
+
+
+  const handleClickReset = () => {
+    setTotalOpeAmount();
+    setNotes("");
+    Array.from(document.querySelectorAll("input")).forEach(
+      (input) => (input.value = "")
+    );
+  };
+
   return (
     <div>
       <Button
@@ -85,8 +110,7 @@ function EditButton() {
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs={1}>
-              <IconButton
-                edgeEnd="end"
+              <IconButton               
                 style={{ color: "#97A1A9" }}
                 onClick={handleClose}
               >
@@ -104,6 +128,7 @@ function EditButton() {
             <Grid item xs={6}>
               <TextField
                 id="name"
+                onChange={Amount}
                 type="text"
                 variant="outlined"
                 //size="small"
@@ -119,6 +144,7 @@ function EditButton() {
             <Grid item xs={6}>
               <TextField
                 id="notes"
+                onChange={Notes}
                 type="text"
                 variant="outlined"
                 multiline
@@ -137,14 +163,14 @@ function EditButton() {
             </Grid>
             <Grid item xs={5} />
             <Grid item xs={3}>
-              <Button onClick={handleClose} variant="outlined" color="primary">
+              <Button onClick={handleClickReset} variant="outlined" color="primary">
                 RESET
               </Button>
             </Grid>
 
             <Grid item xs={2}>
               <Button
-                onClick={handleClose}
+                onClick={function(event){ handleClose(); onEdit(totalOpenAmount, notes)}}
                 color="primary"
                 className={classes.saveButton}
               >

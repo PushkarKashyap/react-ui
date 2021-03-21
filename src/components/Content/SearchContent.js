@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from "@material-ui/core/TextField";
-import Input from "@material-ui/core/Input";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
@@ -23,7 +22,15 @@ const useStyles = makeStyles({
 
 const SearchComponent = ({onSearch}) => 
  {
+
   const classes = useStyles();
+  const [search, setSearch] = React.useState(null);
+
+  const Search = (e) => {
+    setSearch(e.target.value);
+
+  };
+
 
   return (
     <div>
@@ -37,10 +44,11 @@ const SearchComponent = ({onSearch}) =>
         variant="outlined"
         placeholder="Search by invoice number"
         size="small"
+        onChange={Search}
         InputProps={{
           endAdornment: (
             <InputAdornment>
-              <IconButton onClick={() => onSearch(Event)}>
+              <IconButton onClick={() => onSearch(search)}>
                 <SearchIcon />
               </IconButton>
             </InputAdornment>

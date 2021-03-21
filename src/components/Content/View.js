@@ -94,8 +94,7 @@ function ViewCorrespondance() {
           </select>
           {/* <Grid> */}
           <Button
-            onClick={handleClickClose}
-            edgeEnd="end"
+            onClick={handleClickClose}            
             style={{ color: "#97A1A9" }}
           >
             <CloseIcon />

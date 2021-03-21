@@ -1,7 +1,7 @@
 import "./App.css";
-import Content from "./components/Content/Content";
 import { Container } from "@material-ui/core";
 import Header from "./components/Header/Header";
+import Row from "./components/Row/Row";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Container maxWidth="xl">
         <Header />
         <p className='gridHeader'>Invoice List</p>
-        <Content />
+        <Row />
       </Container>
     </div>
   );

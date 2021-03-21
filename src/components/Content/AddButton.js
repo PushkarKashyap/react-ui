@@ -65,7 +65,7 @@ const useStyles = makeStyles({
   },
 });
 
-function AddButton() {
+function AddButton({onAdd}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -94,7 +94,7 @@ function AddButton() {
     if (CustomerName && CustomerNo && InvNo && TotalAmount && DueInDate) {
       addData();
     } else {
-      alert("All fileds are madatory except Notes!");
+      alert("All fields are madatory except Notes!");
     }
   };
 
@@ -114,7 +114,11 @@ function AddButton() {
             notes: Notes,
           },
         }
-      );
+      ).then((response) => {
+          console.log("Returned data:", response.data);
+          alert('Record added successfully!');
+          onAdd();
+        })
 
       console.log("Returned data:", response);
       handleClickClose();
@@ -208,8 +212,7 @@ function AddButton() {
               {"Add Invoice"}
             </Grid>
             <Grid item xs={1}>
-              <IconButton
-                edgeEnd="end"
+              <IconButton                
                 style={{ color: "#97A1A9" }}
                 onClick={handleClickClose}
               >
