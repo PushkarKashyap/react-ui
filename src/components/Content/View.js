@@ -84,22 +84,28 @@ function ViewCorrespondance() {
 
         {/* <div className={classes.heading} > */}
         <DialogTitle className={classes.modalBackground}>
-          <span style={{ color: "#ffffff" }}>View Correspondence</span>
-          <label for="templates" style={{ paddingLeft: "53vw" }}>
-            View :{" "}
+          <Grid container xs={12}>
+            <Grid item xs={9} style={{ paddingTop: "3px" }}>
+            <span style={{ color: "#ffffff", float : "left" }}>View Correspondence</span>
+            </Grid>
+            <Grid item xs={3}>
+            <label for="templates" style={{marginLeft:'3vw'}}>
+            View :{"  "}
           </label>
-          <select name="templates" id="templates">
+            <select name="templates" id="templates"  >
             <option value="Template1">Template 1</option>
             <option value="Template2">Template 2</option>
           </select>
-          {/* <Grid> */}
-          <Button
-            onClick={handleClickClose}            
-            style={{ color: "#97A1A9" }}
-          >
-            <CloseIcon />
-          </Button>
-          {/* </Grid> */}
+              <IconButton                
+                style={{ color: "#97A1A9", paddingLeft: "2vw" }}
+                onClick={handleClickClose}
+              >
+                <CloseIcon />{" "}
+              </IconButton>
+            </Grid>
+          </Grid> 
+
+
         </DialogTitle>
 
         {/* </div>
