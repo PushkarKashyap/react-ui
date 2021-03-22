@@ -271,6 +271,8 @@ const Row = () => {
         //filter deleted / updated records
         if (deleted || updated)
         {
+          setDeleted(false);
+          setUpdated(false);
           setResponseData([]);
           setSelected([]);
         }
