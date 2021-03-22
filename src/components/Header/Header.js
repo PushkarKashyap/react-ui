@@ -18,7 +18,7 @@ const Header = () => {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={4}>
-          <img src={img2} className="appLogo" alt="ABC Limited" />
+          <a href='/1806138'><img src={img2} className="appLogo" alt="ABC Limited" /></a>
         </Grid>
         <Grid item xs={4}>
           <img src={img1} className="alignCenter" alt="Highradius" />
